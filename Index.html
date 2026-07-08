@@ -42,7 +42,6 @@
             border: 3px dashed var(--primary-pink);
         }
 
-        /* Interactive Corkboard / Red String Section */
         .corkboard-container {
             max-width: 1000px;
             margin: 0 auto 40px auto;
@@ -70,7 +69,6 @@
             border: 2px rgba(0,0,0,0.05) solid;
         }
 
-        /* Simulated Polaroid Pins */
         .pin-node {
             position: absolute;
             background: white;
@@ -83,11 +81,14 @@
             cursor: pointer;
             transition: transform 0.2s ease;
             width: 80px;
+            z-index: 5;
         }
+        
         .pin-node:hover {
             transform: scale(1.1) rotate(0deg) !important;
             z-index: 10;
         }
+        
         .pin-node::before {
             content: '';
             position: absolute;
@@ -101,7 +102,6 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* SVG Red Strings Overlay */
         .string-overlay {
             position: absolute;
             top: 0;
@@ -109,9 +109,9 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
+            z-index: 2;
         }
 
-        /* Timeline & Layout */
         .timeline {
             max-width: 1000px;
             margin: 0 auto;
@@ -279,11 +279,9 @@
                 <li><span>🍫 Lodi Chocolate Factory</span><span class="coords">38.1343° N, 121.2733° W</span></li>
                 <li><span>🕹️ Lodi Gamers</span><span class="coords">38.1335° N, 121.2741° W</span></li>
                 <li><span>🛒 Save Mart Grocery Haul</span><span class="coords">38.1189° N, 121.2905° W</span></li>
-                <li><span>🪵 Cigar Lounge (Relaxing night stop)</span><span class="coords">Downtown</span></li>
-                <li><span>🍔 In-N-Out Burger Run</span><span class="coords">38.1245° N, 121.2480° W</span></li>
                 <li><span>🍩 DoorDash Dunkin’ Breakfast</span><span class="dd-tag">DoorDash</span></li>
+                <li><span>🍔 In-N-Out Burger Run</span><span class="coords">38.1245° N, 121.2480° W</span></li>
             </ul>
-            <p style="font-size:12px; color:#888; margin-top:10px;">💡 <em>Note: The famous Lodi Thursday Night Farmers Market isn't running on Tuesday/Wednesday, but checking out Downtown's shops gives you all those identical cozy neighborhood vibes!</em></p>
         </div>
 
         <div class="day-card full-width" id="day3">
@@ -293,7 +291,7 @@
             
             <div class="flight-info" style="background: #fff6f8; border-left-color: #ffb3c1;">
                 <strong>🛫 Flight WS1507:</strong> San Francisco (SFO) 18:05 → Calgary (YYC) 21:45 <br>
-                <em>(10 hr 25 min overnight layover in Calgary — grab a airport hotel room or spot to snooze!)</em><br>
+                <em>(10 hr 25 min overnight layover in Calgary)</em><br>
                 <strong>🛬 Flight WS222:</strong> Calgary (YYC) 08:10 → Winnipeg (YWG) 11:10 (Aug 21)
             </div>
         </div>
@@ -302,7 +300,10 @@
 
     <script>
         function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     </script>
 </body>
