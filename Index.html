@@ -8,72 +8,66 @@
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cork:#d3ac78;
-    --cork-dark:#b98f57;
-    --cork-shadow:#8f6a3c;
-    --string:#e0364c;
-    --string-dark:#b8283b;
-    --pink:#ffd7ea;
-    --pink-deep:#ff9dc4;
-    --mint:#c3f2df;
-    --grape:#6b3f7a;
-    --grape-deep:#4a2a56;
-    --cream:#fff8ef;
-    --ink:#3d2438;
-    --paper:#fffdf8;
+    --bg1:#17081f; --bg2:#0f0515; --bg3:#210b2e;
+    --panel:#1c0c24;
+    --panel-glass: rgba(28,12,36,0.85);
+    --pink:#ec4899; --pink-dark:#db2777; --pink-light:#f9a8d4;
+    --purple:#a855f7; --purple-deep:#581c87; --lilac:#d8b4fe;
+    --string:#f472b6;
+    --text:#fce7f3; --text-soft:#e9d5ff; --text-mute:#c4a8d6;
+    --card:#241031;
+    --card-border: rgba(244,114,182,0.28);
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
     font-family:'Nunito',sans-serif;
-    color:var(--ink);
-    background:
-      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.10) 0, transparent 40%),
-      repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0 2px, transparent 2px 4px),
-      var(--cork);
-    background-blend-mode:normal;
+    color:var(--text-soft);
     min-height:100vh;
+    background:
+      radial-gradient(circle at 22% 8%, rgba(190,24,93,0.28), transparent 32rem),
+      radial-gradient(circle at 82% 20%, rgba(126,34,206,0.26), transparent 34rem),
+      radial-gradient(circle at 52% 70%, rgba(219,39,119,0.14), transparent 38rem),
+      linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 46%, var(--bg3) 100%);
+    background-attachment:fixed;
+    position:relative;
   }
   h1,h2,h3,.display{font-family:'Baloo 2',cursive;}
   .mono{font-family:'Space Mono',monospace;}
+  .gradient-text{
+    background-image:linear-gradient(90deg,#f9a8d4,#d8b4fe);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:#fce7f3;
+  }
 
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    padding:56px 20px 40px;
+    padding:52px 20px 36px;
     text-align:center;
-    background:
-      radial-gradient(ellipse at top, rgba(255,255,255,0.18), transparent 60%),
-      linear-gradient(180deg, var(--grape-deep), var(--grape) 70%, var(--cork-dark));
-    color:var(--cream);
     overflow:hidden;
-    border-bottom:10px solid var(--cork-dark);
+    border-bottom:3px dashed rgba(244,114,182,0.4);
   }
-  .hero .vine{
-    position:absolute; font-size:26px; opacity:.35; user-select:none; pointer-events:none;
+  .hero .glow{position:absolute; border-radius:9999px; filter:blur(90px); pointer-events:none; z-index:0;}
+  .hero .glow1{top:-6rem; left:8%; width:24rem; height:24rem; background:rgba(147,51,234,0.30);}
+  .hero .glow2{top:6rem; right:6%; width:22rem; height:22rem; background:rgba(219,39,119,0.24);}
+  .hero .bismillah{
+    position:relative; z-index:1;
+    font-size:13px; letter-spacing:1.5px; text-transform:uppercase;
+    color:var(--pink-light); font-weight:800; margin-bottom:8px;
   }
   .hero h1{
+    position:relative; z-index:1;
     font-size:clamp(28px,7vw,44px);
     margin:0 0 6px;
-    text-shadow:0 3px 0 rgba(0,0,0,0.2);
-    letter-spacing:.5px;
   }
-  .hero .sub{
-    font-size:15px;
-    opacity:.92;
-    font-weight:700;
-  }
+  .hero .sub{position:relative; z-index:1; font-size:15px; color:var(--text-mute); font-weight:700;}
   .hero .dates{
-    display:inline-block;
-    margin-top:14px;
-    background:var(--pink);
-    color:var(--grape-deep);
-    padding:8px 20px;
-    border-radius:30px;
-    font-weight:800;
-    font-size:14px;
-    box-shadow:0 4px 0 var(--pink-deep);
+    position:relative; z-index:1;
+    display:inline-block; margin-top:14px;
+    background:linear-gradient(120deg,var(--pink),var(--purple));
+    color:#fff; padding:8px 20px; border-radius:30px; font-weight:800; font-size:13px;
+    box-shadow:0 4px 14px rgba(219,39,119,0.4);
     transform:rotate(-2deg);
   }
 
@@ -82,334 +76,264 @@
     position:sticky; top:0; z-index:40;
     display:flex; gap:8px; overflow-x:auto;
     padding:10px 14px;
-    background:rgba(74,42,86,0.92);
-    backdrop-filter:blur(4px);
-    border-bottom:4px dashed var(--pink);
+    background:rgba(15,5,21,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px dashed rgba(244,114,182,0.35);
   }
   .daynav button{
-    flex:0 0 auto;
-    font-family:'Baloo 2',cursive;
-    font-size:13px;
-    color:var(--grape-deep);
-    background:var(--cream);
-    border:none;
-    padding:8px 14px;
-    border-radius:20px;
-    cursor:pointer;
-    white-space:nowrap;
-    box-shadow:0 3px 0 var(--pink-deep);
+    flex:0 0 auto; font-family:'Baloo 2',cursive; font-size:13px;
+    color:#fff; background:linear-gradient(120deg,var(--pink-dark),var(--purple-deep));
+    border:none; padding:8px 14px; border-radius:20px; cursor:pointer; white-space:nowrap;
+    box-shadow:0 3px 0 rgba(0,0,0,0.35);
   }
   .daynav button:active{transform:translateY(2px); box-shadow:none;}
 
   /* ---------- TIMELINE / SPINE ---------- */
-  .timeline{
-    max-width:900px;
-    margin:0 auto;
-    padding:30px 14px 80px;
-    position:relative;
-  }
+  .timeline{max-width:900px; margin:0 auto; padding:30px 14px 90px; position:relative;}
   .spine{
-    position:absolute;
-    left:24px;
-    top:0; bottom:0;
-    width:4px;
+    position:absolute; left:24px; top:0; bottom:0; width:4px;
     background-image:repeating-linear-gradient(180deg, var(--string) 0 10px, transparent 10px 18px);
-    border-radius:4px;
+    border-radius:4px; opacity:.8;
   }
   @media(min-width:640px){ .spine{left:50%; transform:translateX(-50%);} }
 
-  .day-section{
-    position:relative;
-    margin:0 0 46px;
-    padding-left:52px;
-  }
+  .day-section{position:relative; margin:0 0 46px; padding-left:52px;}
   @media(min-width:640px){ .day-section{padding-left:0;} }
 
   .day-marker{
-    position:absolute; left:8px; top:2px;
-    width:34px; height:34px;
-    background:var(--string);
-    border-radius:50%;
-    border:4px solid var(--cream);
-    box-shadow:0 2px 4px rgba(0,0,0,0.3);
-    display:flex; align-items:center; justify-content:center;
-    font-size:16px;
+    position:absolute; left:8px; top:2px; width:34px; height:34px;
+    background:linear-gradient(140deg,var(--pink),var(--purple));
+    border-radius:50%; border:4px solid var(--bg2);
+    box-shadow:0 2px 8px rgba(0,0,0,0.5);
+    display:flex; align-items:center; justify-content:center; font-size:16px;
   }
   @media(min-width:640px){ .day-marker{left:50%; margin-left:-17px;} }
 
   .day-label{
-    display:inline-block;
-    background:var(--paper);
-    color:var(--grape-deep);
-    font-family:'Baloo 2',cursive;
-    padding:8px 16px;
-    border-radius:8px;
-    font-size:14px;
-    box-shadow:2px 3px 0 rgba(0,0,0,0.15);
-    transform:rotate(-1deg);
-    margin-bottom:4px;
+    display:inline-block; background:var(--card); color:var(--pink-light);
+    font-family:'Baloo 2',cursive; padding:8px 16px; border-radius:8px; font-size:13px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.35); border:1px solid var(--card-border);
+    transform:rotate(-1deg); margin-bottom:4px;
   }
   .day-title{
-    font-size:clamp(19px,4.5vw,25px);
-    margin:6px 0 16px;
-    color:var(--cream);
-    text-shadow:0 2px 0 rgba(0,0,0,0.25);
+    font-size:clamp(19px,4.5vw,25px); margin:6px 0 16px;
   }
 
   .board{
     position:relative;
-    background:rgba(255,255,255,0.06);
-    border:2px dashed rgba(255,255,255,0.35);
-    border-radius:18px;
-    padding:26px 16px 20px;
+    background:rgba(255,255,255,0.03);
+    border:2px dashed rgba(244,114,182,0.28);
+    border-radius:18px; padding:26px 16px 20px;
   }
+  .board.dragover{border-color:var(--pink); background:rgba(236,72,153,0.08);}
   .board svg.strings{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible;}
-  .pins{
-    display:flex; flex-wrap:wrap; gap:22px 18px;
-    justify-content:flex-start;
-    position:relative; z-index:2;
-  }
+  .pins{display:flex; flex-wrap:wrap; gap:22px 18px; justify-content:flex-start; position:relative; z-index:2;}
 
   /* ---------- PIN CARD ---------- */
   .pin{
-    background:var(--paper);
-    width:150px;
-    padding:10px 10px 14px;
-    border-radius:4px;
-    box-shadow:0 6px 10px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.03);
-    text-align:center;
-    cursor:pointer;
-    position:relative;
-    transition:transform .15s ease;
-    font-size:12px;
+    background:linear-gradient(160deg, rgba(46,16,63,0.96), rgba(28,12,36,0.96));
+    width:150px; padding:10px 10px 14px; border-radius:10px;
+    box-shadow:0 6px 14px rgba(0,0,0,0.45), inset 0 0 0 1px var(--card-border);
+    text-align:center; cursor:pointer; position:relative;
+    transition:transform .15s ease; font-size:12px; color:var(--text-soft);
   }
   .pin:nth-child(odd){transform:rotate(-3deg);}
   .pin:nth-child(even){transform:rotate(2.5deg);}
-  .pin:hover{transform:scale(1.06) rotate(0deg); z-index:5;}
+  .pin:hover{transform:scale(1.06) rotate(0deg); z-index:5; box-shadow:0 10px 22px rgba(219,39,119,0.35), inset 0 0 0 1px var(--pink);}
+  .pin.dragging{opacity:0.35;}
   .pin .grape-pin{
     position:absolute; top:-14px; left:50%; transform:translateX(-50%);
-    font-size:20px; filter:drop-shadow(0 2px 2px rgba(0,0,0,0.4));
+    font-size:20px; filter:drop-shadow(0 2px 3px rgba(0,0,0,0.6));
   }
   .pin .thumb{
-    width:100%; height:88px;
-    border-radius:2px;
-    background:var(--mint);
-    display:flex; align-items:center; justify-content:center;
-    font-size:34px;
-    margin-bottom:8px;
-    overflow:hidden;
+    width:100%; height:88px; border-radius:8px;
+    background:linear-gradient(140deg, rgba(168,85,247,0.25), rgba(236,72,153,0.2));
+    display:flex; align-items:center; justify-content:center; font-size:34px;
+    margin-bottom:8px; overflow:hidden;
   }
   .pin .thumb img{width:100%; height:100%; object-fit:cover;}
-  .pin .name{
-    font-family:'Baloo 2',cursive;
-    font-size:12.5px;
-    color:var(--grape-deep);
-    line-height:1.15;
-    min-height:28px;
-  }
-  .pin .time{
-    display:block;
-    margin-top:3px;
-    font-size:10px;
-    color:#9a8a70;
-    font-weight:700;
-  }
-  .pin.flight{background:linear-gradient(160deg,#fff,#eef7ff);}
-  .pin.note{background:var(--pink);}
+  .pin .name{font-family:'Baloo 2',cursive; font-size:12.5px; color:#fbe4f2; line-height:1.15; min-height:28px;}
+  .pin .time{display:block; margin-top:3px; font-size:10px; color:var(--text-mute); font-weight:700;}
+  .pin.flight{box-shadow:0 6px 14px rgba(0,0,0,0.45), inset 0 0 0 1px rgba(168,85,247,0.5);}
+  .pin.note{background:linear-gradient(160deg, rgba(219,39,119,0.28), rgba(46,16,63,0.9));}
+  .pin.dua{background:linear-gradient(160deg, rgba(88,28,135,0.5), rgba(28,12,36,0.96));}
   .pin .badge{
-    position:absolute; top:6px; right:6px;
-    font-size:9px; background:var(--mint); color:var(--grape-deep);
-    padding:2px 6px; border-radius:10px; font-weight:800;
+    position:absolute; top:6px; right:6px; font-size:9px;
+    background:var(--purple); color:#fff; padding:2px 6px; border-radius:10px; font-weight:800;
   }
 
   .add-pin{
-    background:transparent;
-    border:2px dashed rgba(255,255,255,0.55);
-    color:var(--cream);
-    border-radius:10px;
-    padding:10px 16px;
-    font-family:'Baloo 2',cursive;
-    font-size:13px;
-    cursor:pointer;
-    margin-top:16px;
+    background:transparent; border:2px dashed rgba(244,114,182,0.45); color:var(--pink-light);
+    border-radius:10px; padding:10px 16px; font-family:'Baloo 2',cursive; font-size:13px; cursor:pointer; margin-top:16px;
   }
-  .add-pin:hover{background:rgba(255,255,255,0.12);}
+  .add-pin:hover{background:rgba(236,72,153,0.1);}
 
   /* ---------- MODAL ---------- */
-  .overlay{
-    position:fixed; inset:0; background:rgba(40,20,45,0.55);
-    display:none; align-items:center; justify-content:center; z-index:100; padding:18px;
-  }
+  .overlay{position:fixed; inset:0; background:rgba(10,4,14,0.7); display:none; align-items:center; justify-content:center; z-index:100; padding:18px;}
   .overlay.open{display:flex;}
-  .card{
-    background:var(--paper);
-    max-width:380px; width:100%;
-    border-radius:14px;
-    padding:20px;
+  .card-modal{
+    background:linear-gradient(160deg, #2e1040, #1c0c24);
+    max-width:380px; width:100%; border-radius:18px; padding:20px;
     max-height:88vh; overflow-y:auto;
-    box-shadow:0 20px 40px rgba(0,0,0,0.4);
-    position:relative;
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);
+    border:1px solid var(--card-border);
+    position:relative; color:var(--text-soft);
   }
-  .card .close{
-    position:absolute; top:10px; right:12px;
-    background:none; border:none; font-size:20px; cursor:pointer; color:var(--grape);
+  .card-modal .close{
+    position:absolute; top:10px; right:12px; background:rgba(147,51,234,0.3);
+    border:none; font-size:16px; cursor:pointer; color:#fff; border-radius:8px; padding:4px 9px;
   }
-  .card h3{margin:6px 0 2px; color:var(--grape-deep); font-size:20px;}
-  .card .emoji-big{font-size:42px; text-align:center;}
-  .card .card-thumb{width:100%; height:150px; border-radius:10px; background:var(--mint); overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:50px; margin:8px 0;}
-  .card .card-thumb img{width:100%; height:100%; object-fit:cover;}
-  .card .field{margin-top:12px;}
-  .card label{font-size:11px; font-weight:800; color:#9a7c8c; text-transform:uppercase; letter-spacing:.4px;}
-  .card input, .card textarea{
+  .card-modal h3{margin:6px 0 2px; color:#fff; font-size:20px; text-align:center;}
+  .card-modal .emoji-big{font-size:42px; text-align:center;}
+  .card-modal .card-thumb{
+    width:100%; height:150px; border-radius:12px;
+    background:linear-gradient(140deg, rgba(168,85,247,0.3), rgba(236,72,153,0.22));
+    overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:50px; margin:8px 0;
+  }
+  .card-modal .card-thumb img{width:100%; height:100%; object-fit:cover;}
+  .card-modal .field{margin-top:12px;}
+  .card-modal label{font-size:11px; font-weight:800; color:var(--pink-light); text-transform:uppercase; letter-spacing:.4px;}
+  .card-modal input, .card-modal textarea, .card-modal select{
     width:100%; margin-top:4px; padding:8px 10px; border-radius:8px;
-    border:2px solid #f0dfe8; font-family:'Nunito',sans-serif; font-size:13px; resize:vertical;
+    border:2px solid rgba(244,114,182,0.3); background:rgba(15,5,21,0.6); color:var(--text-soft);
+    font-family:'Nunito',sans-serif; font-size:13px; resize:vertical;
   }
-  .card .btn{
-    display:inline-block; margin-top:14px; padding:9px 16px; border-radius:20px;
-    border:none; font-family:'Baloo 2',cursive; font-size:13px; cursor:pointer;
-    text-decoration:none; text-align:center;
+  .card-modal input::placeholder, .card-modal textarea::placeholder{color:rgba(216,180,254,0.4);}
+  .btn{
+    display:inline-block; margin-top:14px; padding:9px 16px; border-radius:20px; border:none;
+    font-family:'Baloo 2',cursive; font-size:13px; cursor:pointer; text-decoration:none; text-align:center;
   }
-  .btn.maps{background:var(--mint); color:var(--grape-deep); box-shadow:0 3px 0 #8fd9bd;}
-  .btn.save{background:var(--string); color:#fff; box-shadow:0 3px 0 var(--string-dark);}
-  .btn.save:active, .btn.maps:active{transform:translateY(2px); box-shadow:none;}
+  .btn.maps{background:linear-gradient(120deg,var(--purple),var(--purple-deep)); color:#fff; box-shadow:0 3px 0 #3b0764;}
+  .btn.save{background:linear-gradient(120deg,var(--pink),var(--pink-dark)); color:#fff; box-shadow:0 3px 0 #9d174d;}
+  .btn.move{background:transparent; border:2px solid var(--purple); color:var(--lilac); box-shadow:none;}
+  .btn:active{transform:translateY(2px); box-shadow:none !important;}
   .conf-strip{
-    background:var(--grape-deep); color:var(--cream); padding:8px 10px; border-radius:8px;
-    font-size:12px; margin-top:8px; display:flex; justify-content:space-between;
+    background:rgba(88,28,135,0.5); color:#fce7f3; padding:8px 10px; border-radius:8px;
+    font-size:12px; margin-top:8px; display:flex; justify-content:space-between; border:1px solid var(--card-border);
   }
   .flag{
-    background:#fff4d6; border:2px dashed #e8b93a; color:#7a5b00; border-radius:10px;
-    padding:10px 14px; font-size:12.5px; margin-top:10px; font-weight:700;
+    background:rgba(250,204,21,0.1); border:2px dashed #facc15; color:#fde68a;
+    border-radius:10px; padding:10px 14px; font-size:12.5px; margin-top:10px; font-weight:700;
   }
   .savebar{
     position:fixed; bottom:14px; left:50%; transform:translateX(-50%);
-    background:var(--grape-deep); color:var(--cream); padding:8px 18px; border-radius:20px;
+    background:linear-gradient(120deg,var(--pink),var(--purple)); color:#fff; padding:8px 18px; border-radius:20px;
     font-size:12px; opacity:0; transition:opacity .3s; z-index:200; pointer-events:none;
-    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+    box-shadow:0 4px 14px rgba(0,0,0,0.4);
   }
   .savebar.show{opacity:1;}
-  footer{text-align:center; color:var(--cream); opacity:.75; font-size:12px; padding-bottom:30px;}
+  footer{text-align:center; color:var(--text-mute); font-size:12px; padding-bottom:34px;}
+  .hint{
+    max-width:900px; margin:0 auto; padding:0 14px 4px; text-align:center; color:var(--text-mute); font-size:12px;
+  }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <span class="vine" style="left:6%; top:15%;">🍇</span>
-  <span class="vine" style="right:8%; top:25%;">🍇</span>
-  <span class="vine" style="left:14%; bottom:8%;">🍇</span>
-  <span class="vine" style="right:16%; bottom:12%;">🍇</span>
-  <h1>Our Lodi Adventure 🍇✈️</h1>
+  <div class="glow glow1"></div>
+  <div class="glow glow2"></div>
+  <div class="bismillah">﷽ &nbsp;bismillah, we begin&nbsp; ﷽</div>
+  <h1 class="gradient-text">Our Lodi Adventure 🍇✈️</h1>
   <div class="sub">a very cute plan for a very cute trip</div>
   <div class="dates">Aug 16 – Aug 20 · Fairford ➜ SF ➜ Lodi ➜ home</div>
 </div>
 
 <div class="daynav" id="daynav"></div>
+<p class="hint">tap a pin to add photos, notes &amp; links — or move it to a different day 🌸</p>
 
 <div class="timeline">
   <div class="spine"></div>
   <div id="days"></div>
 </div>
 
-<footer>made with 🍇 &amp; red string · tap any pin to add photos, links &amp; notes — changes are shared with your husband too 💌</footer>
+<footer>made with 🍇 &amp; a lil pink string · Bismillah over the whole trip · safe travels, Alhamdulillah 🌙💗</footer>
 
 <div class="overlay" id="overlay">
-  <div class="card" id="card"></div>
+  <div class="card-modal" id="card"></div>
 </div>
 <div class="savebar" id="savebar">saved! 🎀</div>
 
 <script>
 const MAPS = a => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a)}`;
+const GSEARCH = q => `https://www.google.com/search?q=${encodeURIComponent(q)}`;
 
-const TRIP = [
-  {
-    id:'d0', day:'Sun · Aug 16', title:'Fairford ➜ hit the road', icon:'🚗',
-    pins:[
-      {id:'p-leave', icon:'🚗', kind:'note', name:'Leave Fairford with Dad', time:'afternoon', note:'Pack snacks for the drive 🍇'},
-      {id:'p-motel', icon:'🛏️', kind:'note', name:'Motel sleepover', time:'evening', note:'Early night — early alarm for the flight!'}
-    ]
-  },
-  {
-    id:'d1', day:'Mon · Aug 17 · morning', title:'Wheels up to San Francisco', icon:'✈️',
-    pins:[
-      {id:'f-ywgyyc', icon:'✈️', kind:'flight', name:'Winnipeg ➜ Calgary', route:'YWG → YYC', time:'7:00a – 8:15a', flight:'WestJet WS223', conf:'QNEAEB'},
-      {id:'f-yycsfo', icon:'✈️', kind:'flight', name:'Calgary ➜ San Francisco', route:'YYC → SFO', time:'10:00a – 12:00p', flight:'WestJet WS1500', conf:'QNEAEB'}
-    ]
-  },
-  {
-    id:'d1b', day:'Mon · Aug 17 · afternoon', title:'A little San Francisco day', icon:'🌉',
-    pins:[
-      {id:'s-uber1', icon:'🚕', kind:'note', name:'Uber from SFO', note:'Straight to the pier!'},
-      {id:'s-pier39', icon:'🎡', kind:'place', name:'Pier 39', address:'The Embarcadero, San Francisco, CA 94133', note:'Sea lions + sourdough + salty air'},
-      {id:'s-scoot', icon:'🛴', kind:'note', name:'Walk or scooter over', note:'Along the water to Ghirardelli Square'},
-      {id:'s-ghirardelli', icon:'🍫', kind:'place', name:'Ghirardelli Chocolate Experience', address:'900 North Point St F301, San Francisco, CA 94109', note:'Sundae time 🍨'},
-      {id:'s-uber2', icon:'🚕', kind:'note', name:'Uber to Lodi', note:'300 South Sunset Ave, Lodi CA — home base for the week 🏡'}
-    ]
-  },
-  {
-    id:'d2', day:'Tue · Aug 18', title:'Lodi Day One — Downtown & Sweets', icon:'🏛️',
-    pins:[
-      {id:'l-doordash-dunkin', icon:'☕', kind:'note', name:'DoorDash: Dunkin', note:'Coffee delivered to the house before heading out'},
-      {id:'l-downtown', icon:'🏘️', kind:'place', name:'Downtown Lodi', address:'25 N School St, Lodi, CA 95240', note:'Wander the shops & wine tasting rooms'},
-      {id:'l-arch', icon:'🌟', kind:'place', name:'Lodi Arch', address:'1-49 E Pine St, Lodi, CA 95240', note:'The iconic photo spot!'},
-      {id:'l-masjid', icon:'🕌', kind:'place', name:'Masjid', address:'210 Poplar St, Lodi, CA 95240', note:'Lodi Mosque'},
-      {id:'l-aw', icon:'🍔', kind:'place', name:'A & W', address:'216 E Lodi Ave, Lodi, CA 95240', note:'The original A&W — root beer float required'},
-      {id:'l-savemart', icon:'🛒', kind:'place', name:'Save Mart', address:'530 W Lodi Ave, Lodi, CA 95240', note:'Grocery run'},
-      {id:'l-haircut', icon:'💇', kind:'place', name:'Haircut', address:'400 E Kettleman Ln Unit C-9, Lodi, CA 95240', note:'Speakeasy Barbershop'},
-      {id:'l-toms', icon:'📚', kind:'place', name:"Tom's Bookstore", address:'108 N School St, Lodi, CA 95240', note:'Say hi to the shop cat 🐈'},
-      {id:'l-clocks', icon:'🕰️', kind:'place', name:'House of Clocks', address:'208 S School St, Lodi, CA 95240', note:'Adorable little gift shop'},
-      {id:'l-choc', icon:'🍫', kind:'place', name:'Lodi Chocolate Factory', address:'115 S School St #4, Lodi, CA 95240', note:'Chocolate-dipped apples!'},
-      {id:'l-cigar', icon:'🚬', kind:'place', name:'Cigar Lounge', address:'40 Downtown Mall, 7 S School St, Lodi, CA 95240', note:"Lefty's Lounge — cozy end to the night"}
-    ]
-  },
-  {
-    id:'d3', day:'Wed · Aug 19', title:'Lodi Day Two — Kettleman Ln & Chill', icon:'🍟',
-    pins:[
-      {id:'l-doordash-boba', icon:'🧋', kind:'note', name:'DoorDash: Boba', note:'Slow morning at the house'},
-      {id:'l-fosters', icon:'🍦', kind:'place', name:"Fosters Freeze", address:'315 N Ham Ln, Lodi, CA 95242', note:'Old-school drive-in soft serve'},
-      {id:'l-gamers', icon:'🎮', kind:'place', name:'Lodi Gamers', address:'754 W Kettleman Ln, Lodi, CA 95240', note:'Browse for retro finds'},
-      {id:'l-innout', icon:'🍟', kind:'place', name:'In & Out', address:'2625 W Kettleman Ln, Lodi, CA 95242', note:'Animal style, obviously'},
-      {id:'l-doordash-chipotle', icon:'🌯', kind:'note', name:'DoorDash: Chipotle', note:'Or save this one for dinner in'},
-      {id:'l-yogurt', icon:'🍨', kind:'place', name:'Oh My Yogurt', address:'2314 W Kettleman Ln #102, Lodi, CA 95242', note:'Topping bar, obviously'}
-    ]
-  },
-  {
-    id:'bonus', day:'whenever you have a spare hour', title:'Bonus pin', icon:'🪷',
-    pins:[
-      {id:'l-lake', icon:'🪷', kind:'place', name:'Lodi Lake', address:'1101 W Turner Rd, Lodi, CA 95242', note:'You mentioned this one! Lovely for a stroll if a gap opens up.'},
-      {id:'l-farmers', icon:'🥕', kind:'flag', name:'Farmers Market — heads up!', address:'25 N School St, Lodi, CA 95240', note:"Downtown Lodi's Farmers Market only runs Thursday evenings in summer. Your Lodi days are Tue/Wed, and Thu Aug 20 is travel day — so this one may not fit. Keep as a maybe, or swap a flight if it's a must!"}
-    ]
-  },
-  {
-    id:'d4', day:'Thu · Aug 20', title:'Flying home', icon:'🏡',
-    pins:[
-      {id:'f-sfoyyc', icon:'✈️', kind:'flight', name:'San Francisco ➜ Calgary', route:'SFO → YYC', time:'1:00p – 4:40p', flight:'WestJet WS1503', conf:'QNEAEB'},
-      {id:'f-yycywg', icon:'✈️', kind:'flight', name:'Calgary ➜ Winnipeg', route:'YYC → YWG', time:'7:10p – 10:10p', flight:'WestJet WS240', conf:'QNEAEB'},
-      {id:'p-fairford2', icon:'🚗', kind:'note', name:'Drive back to Fairford', note:'Home sweet home 💜'}
-    ]
-  }
+// day metadata only (order + labels)
+const DAYS = [
+  {id:'d0', day:'Sun · Aug 16', title:'Fairford ➜ hit the road', icon:'🚗'},
+  {id:'d1', day:'Mon · Aug 17 · morning', title:'Wheels up to San Francisco', icon:'✈️'},
+  {id:'d1b', day:'Mon · Aug 17 · afternoon', title:'A little San Francisco day', icon:'🌉'},
+  {id:'d2', day:'Tue · Aug 18', title:'Lodi Day One — Downtown & Sweets', icon:'🏛️'},
+  {id:'d3', day:'Wed · Aug 19', title:'Lodi Day Two — Kettleman Ln & Chill', icon:'🍟'},
+  {id:'bonus', day:'whenever you have a spare hour', title:'Bonus pins', icon:'🪷'},
+  {id:'d4', day:'Thu · Aug 20', title:'Flying home', icon:'🏡'}
 ];
 
-let STORE = { overrides:{}, custom:{} };
+// flat pin list, each with a homeDay (its default day)
+const PINS = [
+  {id:'p-bismillah', home:'d0', icon:'🕋', kind:'dua', name:'Dua for Travel', note:'Allahu Akbar (x3) — Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila rabbina lamunqalibun. "Glory to Him who has subjected this to us, and we could never have accomplished it ourselves. Surely to our Lord we shall return." 🌙 A sweet one to say before setting off.'},
+  {id:'p-leave', home:'d0', icon:'🚗', kind:'note', name:'Leave Fairford with Dad', time:'afternoon', note:'Pack snacks for the drive 🍇'},
+  {id:'p-motel', home:'d0', icon:'🛏️', kind:'note', name:'Motel sleepover', time:'evening', note:'Early night — early alarm for the flight!'},
+
+  {id:'f-ywgyyc', home:'d1', icon:'✈️', kind:'flight', name:'Winnipeg ➜ Calgary', route:'YWG → YYC', time:'7:00a – 8:15a', flight:'WestJet WS223', conf:'QNEAEB'},
+  {id:'f-yycsfo', home:'d1', icon:'✈️', kind:'flight', name:'Calgary ➜ San Francisco', route:'YYC → SFO', time:'10:00a – 12:00p', flight:'WestJet WS1500', conf:'QNEAEB'},
+
+  {id:'s-uber1', home:'d1b', icon:'🚕', kind:'note', name:'Uber from SFO', note:'Straight to the pier!'},
+  {id:'s-pier39', home:'d1b', icon:'🎡', kind:'place', name:'Pier 39', address:'The Embarcadero, San Francisco, CA 94133', note:'Sea lions + sourdough + salty air'},
+  {id:'s-scoot', home:'d1b', icon:'🛴', kind:'note', name:'Walk or scooter over', note:'Along the water to Ghirardelli Square'},
+  {id:'s-ghirardelli', home:'d1b', icon:'🍫', kind:'place', name:'Ghirardelli Chocolate Experience', address:'900 North Point St F301, San Francisco, CA 94109', note:'Sundae time 🍨'},
+  {id:'s-uber2', home:'d1b', icon:'🚕', kind:'note', name:'Uber to Lodi', note:'300 South Sunset Ave, Lodi CA — home base for the week 🏡'},
+
+  {id:'l-doordash-dunkin', home:'d2', icon:'☕', kind:'note', name:'DoorDash: Dunkin', note:'Coffee delivered to the house before heading out'},
+  {id:'l-downtown', home:'d2', icon:'🏘️', kind:'place', name:'Downtown Lodi', address:'25 N School St, Lodi, CA 95240', note:'Wander the shops & wine tasting rooms'},
+  {id:'l-arch', home:'d2', icon:'🌟', kind:'place', name:'Lodi Arch', address:'1-49 E Pine St, Lodi, CA 95240', note:'The iconic photo spot!'},
+  {id:'l-masjid', home:'d2', icon:'🕌', kind:'place', name:'Masjid', address:'210 Poplar St, Lodi, CA 95240', note:"Lodi Mosque — sweet spot for Dhuhr/Asr during the downtown day 🤍"},
+  {id:'l-aw', home:'d2', icon:'🍔', kind:'place', name:'A & W', address:'216 E Lodi Ave, Lodi, CA 95240', note:'The original A&W — root beer float required'},
+  {id:'l-savemart', home:'d2', icon:'🛒', kind:'place', name:'Save Mart', address:'530 W Lodi Ave, Lodi, CA 95240', note:'Grocery run'},
+  {id:'l-haircut', home:'d2', icon:'💇', kind:'place', name:'Haircut', address:'400 E Kettleman Ln Unit C-9, Lodi, CA 95240', note:'Speakeasy Barbershop'},
+  {id:'l-toms', home:'d2', icon:'📚', kind:'place', name:"Tom's Bookstore", address:'108 N School St, Lodi, CA 95240', note:'Say hi to the shop cat 🐈'},
+  {id:'l-clocks', home:'d2', icon:'🕰️', kind:'place', name:'House of Clocks', address:'208 S School St, Lodi, CA 95240', note:'Adorable little gift shop'},
+  {id:'l-choc', home:'d2', icon:'🍫', kind:'place', name:'Lodi Chocolate Factory', address:'115 S School St #4, Lodi, CA 95240', note:'Chocolate-dipped apples!'},
+  {id:'l-cigar', home:'d2', icon:'🚬', kind:'place', name:'Cigar Lounge', address:'40 Downtown Mall, 7 S School St, Lodi, CA 95240', note:"Lefty's Lounge — cozy end to the night"},
+
+  {id:'l-doordash-boba', home:'d3', icon:'🧋', kind:'note', name:'DoorDash: Boba', note:'Slow morning at the house'},
+  {id:'l-fosters', home:'d3', icon:'🍦', kind:'place', name:'Fosters Freeze', address:'315 N Ham Ln, Lodi, CA 95242', note:'Old-school drive-in soft serve'},
+  {id:'l-gamers', home:'d3', icon:'🎮', kind:'place', name:'Lodi Gamers', address:'754 W Kettleman Ln, Lodi, CA 95240', note:'Browse for retro finds'},
+  {id:'l-innout', home:'d3', icon:'🍟', kind:'place', name:'In & Out', address:'2625 W Kettleman Ln, Lodi, CA 95242', note:'Animal style, obviously'},
+  {id:'l-doordash-chipotle', home:'d3', icon:'🌯', kind:'note', name:'DoorDash: Chipotle', note:'Or save this one for dinner in'},
+  {id:'l-yogurt', home:'d3', icon:'🍨', kind:'place', name:'Oh My Yogurt', address:'2314 W Kettleman Ln #102, Lodi, CA 95242', note:'Topping bar, obviously'},
+  {id:'l-prayertimes', home:'d3', icon:'🤲', kind:'note', name:'Prayer check-in', link:GSEARCH('prayer times Lodi CA'), note:'Little reminder to check in with prayer times today 💗'},
+
+  {id:'l-lake', home:'bonus', icon:'🪷', kind:'place', name:'Lodi Lake', address:'1101 W Turner Rd, Lodi, CA 95242', note:'You mentioned this one! Lovely for a stroll if a gap opens up.'},
+  {id:'l-farmers', home:'bonus', icon:'🥕', kind:'flag', name:'Farmers Market — heads up!', address:'25 N School St, Lodi, CA 95240', note:"Downtown Lodi's Farmers Market only runs Thursday evenings in summer. Your Lodi days are Tue/Wed, and Thu Aug 20 is travel day — so this one may not fit. Keep as a maybe, or swap a flight if it's a must!"},
+
+  {id:'f-sfoyyc', home:'d4', icon:'✈️', kind:'flight', name:'San Francisco ➜ Calgary', route:'SFO → YYC', time:'1:00p – 4:40p', flight:'WestJet WS1503', conf:'QNEAEB'},
+  {id:'f-yycywg', home:'d4', icon:'✈️', kind:'flight', name:'Calgary ➜ Winnipeg', route:'YYC → YWG', time:'7:10p – 10:10p', flight:'WestJet WS240', conf:'QNEAEB'},
+  {id:'p-fairford2', home:'d4', icon:'🚗', kind:'note', name:'Drive back to Fairford', note:'Home sweet home, Alhamdulillah 💜'}
+];
+
+let STORE = { overrides:{}, location:{}, custom:[] };
 const daysEl = document.getElementById('days');
 const navEl = document.getElementById('daynav');
 const overlay = document.getElementById('overlay');
 const cardEl = document.getElementById('card');
 const savebar = document.getElementById('savebar');
 
-function pinData(p){
-  const o = STORE.overrides[p.id] || {};
-  return {...p, ...o};
-}
+function allPins(){ return [...PINS, ...STORE.custom]; }
+function effectiveDay(p){ return STORE.location[p.id] || p.home; }
+function pinData(p){ const o = STORE.overrides[p.id] || {}; return {...p, ...o}; }
+function findPin(id){ return allPins().find(p=>p.id===id) || null; }
 
 function renderNav(){
-  navEl.innerHTML = TRIP.map(d=>`<button onclick="document.getElementById('${d.id}').scrollIntoView({behavior:'smooth',block:'start'})">${d.icon} ${d.day.split('·')[0].trim()}</button>`).join('');
+  navEl.innerHTML = DAYS.map(d=>`<button onclick="document.getElementById('${d.id}').scrollIntoView({behavior:'smooth',block:'start'})">${d.icon} ${d.day.split('·')[0].trim()}</button>`).join('');
 }
 
 function pinCardHTML(p){
   const d = pinData(p);
   const thumb = d.image ? `<img src="${d.image}" alt="">` : (d.icon || '📍');
   const timeLine = d.time ? `<span class="time">${d.time}</span>` : (d.flight ? `<span class="time">${d.flight}</span>` : '');
-  const cls = d.kind === 'flight' ? 'flight' : (d.kind==='note' ? 'note' : '');
-  return `<div class="pin ${cls}" data-id="${p.id}" onclick="openCard('${p.id}')">
+  const cls = d.kind === 'flight' ? 'flight' : (d.kind==='note' ? 'note' : (d.kind==='dua' ? 'dua' : ''));
+  return `<div class="pin ${cls}" data-id="${p.id}" draggable="true" onclick="openCard('${p.id}')">
     <div class="grape-pin">🍇</div>
     ${d.kind==='flag' ? '<div class="badge">⚠️</div>' : ''}
     <div class="thumb">${thumb}</div>
@@ -419,21 +343,21 @@ function pinCardHTML(p){
 }
 
 function renderDays(){
-  daysEl.innerHTML = TRIP.map(day => {
-    const pins = day.pins.map(pinCardHTML).join('');
-    const customPins = (STORE.custom[day.id]||[]).map(p=>pinCardHTML({...p})).join('');
+  daysEl.innerHTML = DAYS.map(day => {
+    const pins = allPins().filter(p=>effectiveDay(p)===day.id).map(pinCardHTML).join('');
     return `<div class="day-section" id="${day.id}">
       <div class="day-marker">${day.icon}</div>
       <div class="day-label">${day.day}</div>
-      <h2 class="day-title">${day.title}</h2>
-      <div class="board">
+      <h2 class="day-title gradient-text">${day.title}</h2>
+      <div class="board" data-day="${day.id}">
         <svg class="strings"></svg>
-        <div class="pins">${pins}${customPins}</div>
+        <div class="pins">${pins}</div>
       </div>
       <button class="add-pin" onclick="addCustomPin('${day.id}')">＋ add your own stop</button>
     </div>`;
   }).join('');
   requestAnimationFrame(drawAllStrings);
+  attachDragHandlers();
 }
 
 function drawAllStrings(){
@@ -448,23 +372,36 @@ function drawAllStrings(){
       const x1 = a.left + a.width/2 - boardRect.left, y1 = a.top + a.height/2 - boardRect.top;
       const x2 = b.left + b.width/2 - boardRect.left, y2 = b.top + b.height/2 - boardRect.top;
       const midx = (x1+x2)/2, midy = (y1+y2)/2 - 26;
-      paths += `<path d="M ${x1} ${y1} Q ${midx} ${midy} ${x2} ${y2}" stroke="#e0364c" stroke-width="2.5" fill="none" opacity="0.85"/>`;
+      paths += `<path d="M ${x1} ${y1} Q ${midx} ${midy} ${x2} ${y2}" stroke="#f472b6" stroke-width="2.5" fill="none" opacity="0.8"/>`;
     }
     svg.innerHTML = paths;
   });
 }
 window.addEventListener('resize', ()=>requestAnimationFrame(drawAllStrings));
 
-function findPin(id){
-  for(const day of TRIP){
-    const f = day.pins.find(p=>p.id===id);
-    if(f) return f;
-  }
-  for(const key in STORE.custom){
-    const f = (STORE.custom[key]||[]).find(p=>p.id===id);
-    if(f) return f;
-  }
-  return null;
+// ---- drag & drop between day boards (desktop) ----
+function attachDragHandlers(){
+  document.querySelectorAll('.pin').forEach(pinEl=>{
+    pinEl.addEventListener('dragstart', e=>{
+      pinEl.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', pinEl.dataset.id);
+    });
+    pinEl.addEventListener('dragend', ()=> pinEl.classList.remove('dragging'));
+  });
+  document.querySelectorAll('.board').forEach(board=>{
+    board.addEventListener('dragover', e=>{ e.preventDefault(); board.classList.add('dragover'); });
+    board.addEventListener('dragleave', ()=> board.classList.remove('dragover'));
+    board.addEventListener('drop', e=>{
+      e.preventDefault();
+      board.classList.remove('dragover');
+      const id = e.dataTransfer.getData('text/plain');
+      const targetDay = board.dataset.day;
+      if(id && targetDay){
+        STORE.location[id] = targetDay;
+        persist(); renderDays(); flashSaved();
+      }
+    });
+  });
 }
 
 function openCard(id){
@@ -475,23 +412,28 @@ function openCard(id){
   const mapsBtn = d.address ? `<a class="btn maps" target="_blank" href="${MAPS(d.address)}">📍 open in maps</a>` : '';
   const confStrip = d.kind==='flight' ? `<div class="conf-strip"><span>${d.flight}</span><span class="mono">${d.conf}</span></div>` : '';
   const flagBox = d.kind==='flag' ? `<div class="flag">${d.note}</div>` : '';
+  const dayOptions = DAYS.map(day=>`<option value="${day.id}" ${effectiveDay(base)===day.id?'selected':''}>${day.icon} ${day.day}</option>`).join('');
   cardEl.innerHTML = `
-    <button class="close" onclick="closeCard()">✕</button>
+    <button class="close" onclick="closeCard()">✕ close</button>
     <div class="emoji-big">${d.icon||'📍'}</div>
-    <h3 style="text-align:center">${d.name}</h3>
-    ${d.route ? `<div style="text-align:center;font-weight:700;color:#9a7c8c">${d.route} · ${d.time||''}</div>`:''}
+    <h3>${d.name}</h3>
+    ${d.route ? `<div style="text-align:center;font-weight:700;color:var(--text-mute)">${d.route} · ${d.time||''}</div>`:''}
     ${confStrip}
     ${flagBox}
     <div class="card-thumb" id="cardThumb">${d.image?`<img src="${d.image}">`:(d.icon||'📍')}</div>
-    ${d.address ? `<div style="text-align:center;font-size:13px;color:#8a6a7a">${d.address}</div>`:''}
+    ${d.address ? `<div style="text-align:center;font-size:13px;color:var(--text-mute)">${d.address}</div>`:''}
     ${mapsBtn ? `<div style="text-align:center;margin-top:8px;">${mapsBtn}</div>`:''}
+    <div class="field">
+      <label>move to a different day</label>
+      <select id="f-day">${dayOptions}</select>
+    </div>
     <div class="field">
       <label>photo url</label>
       <input id="f-image" value="${d.image||''}" placeholder="paste a photo link">
     </div>
     <div class="field">
       <label>your note</label>
-      <textarea id="f-note" rows="3" placeholder="add a note...">${(d.note && d.kind!=='flag') ? d.note : (d.kind==='flag' ? '' : (d.note||''))}</textarea>
+      <textarea id="f-note" rows="3" placeholder="add a note...">${(d.kind==='flag') ? '' : (d.note||'')}</textarea>
     </div>
     <div class="field">
       <label>link (menu, website, booking...)</label>
@@ -509,7 +451,9 @@ function savePin(id){
   const image = document.getElementById('f-image').value.trim();
   const note = document.getElementById('f-note').value.trim();
   const link = document.getElementById('f-link').value.trim();
+  const newDay = document.getElementById('f-day').value;
   STORE.overrides[id] = {...(STORE.overrides[id]||{}), image, note, link};
+  STORE.location[id] = newDay;
   persist();
   renderDays();
   closeCard();
@@ -522,8 +466,7 @@ function addCustomPin(dayId){
   const address = prompt('address? (optional, for maps link)') || '';
   const emoji = prompt('pick an emoji for it! (optional)') || '📍';
   const id = 'custom-'+Date.now();
-  STORE.custom[dayId] = STORE.custom[dayId] || [];
-  STORE.custom[dayId].push({id, icon:emoji, kind:'place', name, address, note:''});
+  STORE.custom.push({id, home:dayId, icon:emoji, kind:'place', name, address, note:''});
   persist();
   renderDays();
   flashSaved();
@@ -535,13 +478,12 @@ function flashSaved(){
 }
 
 async function persist(){
-  try{
-    await window.storage.set('lodi-trip-data', JSON.stringify(STORE), true);
-  }catch(e){ console.error('save failed', e); }
+  try{ await window.storage.set('lodi-trip-data-v2', JSON.stringify(STORE), true); }
+  catch(e){ console.error('save failed', e); }
 }
 async function loadStore(){
   try{
-    const res = await window.storage.get('lodi-trip-data', true);
+    const res = await window.storage.get('lodi-trip-data-v2', true);
     if(res && res.value) STORE = JSON.parse(res.value);
   }catch(e){ /* nothing saved yet */ }
 }
