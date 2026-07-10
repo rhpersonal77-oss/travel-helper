@@ -1,310 +1,557 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Our Kawaii Lodi Adventure 🌸</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@500;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍇 Our Lodi Adventure 🍇</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cork:#d3ac78;
+    --cork-dark:#b98f57;
+    --cork-shadow:#8f6a3c;
+    --string:#e0364c;
+    --string-dark:#b8283b;
+    --pink:#ffd7ea;
+    --pink-deep:#ff9dc4;
+    --mint:#c3f2df;
+    --grape:#6b3f7a;
+    --grape-deep:#4a2a56;
+    --cream:#fff8ef;
+    --ink:#3d2438;
+    --paper:#fffdf8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Nunito',sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,0.10) 0, transparent 40%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,0.035) 0 2px, transparent 2px 4px),
+      var(--cork);
+    background-blend-mode:normal;
+    min-height:100vh;
+  }
+  h1,h2,h3,.display{font-family:'Baloo 2',cursive;}
+  .mono{font-family:'Space Mono',monospace;}
 
-        :root {
-            --bg-color: #fff5f7;
-            --card-bg: #ffffff;
-            --primary-pink: #ffb7c5;
-            --accent-lavender: #e2d4f0;
-            --text-color: #5d4e52;
-            --string-color: #ff4d6d;
-        }
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:56px 20px 40px;
+    text-align:center;
+    background:
+      radial-gradient(ellipse at top, rgba(255,255,255,0.18), transparent 60%),
+      linear-gradient(180deg, var(--grape-deep), var(--grape) 70%, var(--cork-dark));
+    color:var(--cream);
+    overflow:hidden;
+    border-bottom:10px solid var(--cork-dark);
+  }
+  .hero .vine{
+    position:absolute; font-size:26px; opacity:.35; user-select:none; pointer-events:none;
+  }
+  .hero h1{
+    font-size:clamp(28px,7vw,44px);
+    margin:0 0 6px;
+    text-shadow:0 3px 0 rgba(0,0,0,0.2);
+    letter-spacing:.5px;
+  }
+  .hero .sub{
+    font-size:15px;
+    opacity:.92;
+    font-weight:700;
+  }
+  .hero .dates{
+    display:inline-block;
+    margin-top:14px;
+    background:var(--pink);
+    color:var(--grape-deep);
+    padding:8px 20px;
+    border-radius:30px;
+    font-weight:800;
+    font-size:14px;
+    box-shadow:0 4px 0 var(--pink-deep);
+    transform:rotate(-2deg);
+  }
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            background-image: radial-gradient(#ffdfe5 1.5px, transparent 1.5px);
-            background-size: 24px 24px;
-        }
+  /* ---------- DAY NAV ---------- */
+  .daynav{
+    position:sticky; top:0; z-index:40;
+    display:flex; gap:8px; overflow-x:auto;
+    padding:10px 14px;
+    background:rgba(74,42,86,0.92);
+    backdrop-filter:blur(4px);
+    border-bottom:4px dashed var(--pink);
+  }
+  .daynav button{
+    flex:0 0 auto;
+    font-family:'Baloo 2',cursive;
+    font-size:13px;
+    color:var(--grape-deep);
+    background:var(--cream);
+    border:none;
+    padding:8px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    white-space:nowrap;
+    box-shadow:0 3px 0 var(--pink-deep);
+  }
+  .daynav button:active{transform:translateY(2px); box-shadow:none;}
 
-        h1, h2, h3 {
-            font-family: 'Fredoka', sans-serif;
-            color: #ff7597;
-            text-align: center;
-        }
+  /* ---------- TIMELINE / SPINE ---------- */
+  .timeline{
+    max-width:900px;
+    margin:0 auto;
+    padding:30px 14px 80px;
+    position:relative;
+  }
+  .spine{
+    position:absolute;
+    left:24px;
+    top:0; bottom:0;
+    width:4px;
+    background-image:repeating-linear-gradient(180deg, var(--string) 0 10px, transparent 10px 18px);
+    border-radius:4px;
+  }
+  @media(min-width:640px){ .spine{left:50%; transform:translateX(-50%);} }
 
-        header {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.3);
-            margin-bottom: 30px;
-            border: 3px dashed var(--primary-pink);
-        }
+  .day-section{
+    position:relative;
+    margin:0 0 46px;
+    padding-left:52px;
+  }
+  @media(min-width:640px){ .day-section{padding-left:0;} }
 
-        .corkboard-container {
-            max-width: 1000px;
-            margin: 0 auto 40px auto;
-            background: #fffdf9;
-            border: 12px solid #e6c594;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.05), 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-        }
+  .day-marker{
+    position:absolute; left:8px; top:2px;
+    width:34px; height:34px;
+    background:var(--string);
+    border-radius:50%;
+    border:4px solid var(--cream);
+    box-shadow:0 2px 4px rgba(0,0,0,0.3);
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px;
+  }
+  @media(min-width:640px){ .day-marker{left:50%; margin-left:-17px;} }
 
-        .board-title {
-            font-size: 24px;
-            margin-top: 0;
-            text-shadow: 1px 1px 0px #fff;
-        }
+  .day-label{
+    display:inline-block;
+    background:var(--paper);
+    color:var(--grape-deep);
+    font-family:'Baloo 2',cursive;
+    padding:8px 16px;
+    border-radius:8px;
+    font-size:14px;
+    box-shadow:2px 3px 0 rgba(0,0,0,0.15);
+    transform:rotate(-1deg);
+    margin-bottom:4px;
+  }
+  .day-title{
+    font-size:clamp(19px,4.5vw,25px);
+    margin:6px 0 16px;
+    color:var(--cream);
+    text-shadow:0 2px 0 rgba(0,0,0,0.25);
+  }
 
-        .map-preview {
-            width: 100%;
-            height: 380px;
-            background-color: #f4eedb;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
-            border: 2px rgba(0,0,0,0.05) solid;
-        }
+  .board{
+    position:relative;
+    background:rgba(255,255,255,0.06);
+    border:2px dashed rgba(255,255,255,0.35);
+    border-radius:18px;
+    padding:26px 16px 20px;
+  }
+  .board svg.strings{position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible;}
+  .pins{
+    display:flex; flex-wrap:wrap; gap:22px 18px;
+    justify-content:flex-start;
+    position:relative; z-index:2;
+  }
 
-        .pin-node {
-            position: absolute;
-            background: white;
-            padding: 8px 8px 20px 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.12);
-            font-family: 'Fredoka', sans-serif;
-            font-size: 11px;
-            text-align: center;
-            border-radius: 2px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            width: 80px;
-            z-index: 5;
-        }
-        
-        .pin-node:hover {
-            transform: scale(1.1) rotate(0deg) !important;
-            z-index: 10;
-        }
-        
-        .pin-node::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--string-color);
-            border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
+  /* ---------- PIN CARD ---------- */
+  .pin{
+    background:var(--paper);
+    width:150px;
+    padding:10px 10px 14px;
+    border-radius:4px;
+    box-shadow:0 6px 10px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.03);
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    transition:transform .15s ease;
+    font-size:12px;
+  }
+  .pin:nth-child(odd){transform:rotate(-3deg);}
+  .pin:nth-child(even){transform:rotate(2.5deg);}
+  .pin:hover{transform:scale(1.06) rotate(0deg); z-index:5;}
+  .pin .grape-pin{
+    position:absolute; top:-14px; left:50%; transform:translateX(-50%);
+    font-size:20px; filter:drop-shadow(0 2px 2px rgba(0,0,0,0.4));
+  }
+  .pin .thumb{
+    width:100%; height:88px;
+    border-radius:2px;
+    background:var(--mint);
+    display:flex; align-items:center; justify-content:center;
+    font-size:34px;
+    margin-bottom:8px;
+    overflow:hidden;
+  }
+  .pin .thumb img{width:100%; height:100%; object-fit:cover;}
+  .pin .name{
+    font-family:'Baloo 2',cursive;
+    font-size:12.5px;
+    color:var(--grape-deep);
+    line-height:1.15;
+    min-height:28px;
+  }
+  .pin .time{
+    display:block;
+    margin-top:3px;
+    font-size:10px;
+    color:#9a8a70;
+    font-weight:700;
+  }
+  .pin.flight{background:linear-gradient(160deg,#fff,#eef7ff);}
+  .pin.note{background:var(--pink);}
+  .pin .badge{
+    position:absolute; top:6px; right:6px;
+    font-size:9px; background:var(--mint); color:var(--grape-deep);
+    padding:2px 6px; border-radius:10px; font-weight:800;
+  }
 
-        .string-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-        }
+  .add-pin{
+    background:transparent;
+    border:2px dashed rgba(255,255,255,0.55);
+    color:var(--cream);
+    border-radius:10px;
+    padding:10px 16px;
+    font-family:'Baloo 2',cursive;
+    font-size:13px;
+    cursor:pointer;
+    margin-top:16px;
+  }
+  .add-pin:hover{background:rgba(255,255,255,0.12);}
 
-        .timeline {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 768px) {
-            .timeline {
-                grid-template-columns: 1fr 1fr;
-            }
-            .full-width {
-                grid-column: span 2;
-            }
-        }
-
-        .day-card {
-            background: var(--card-bg);
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 8px 24px rgba(255, 183, 197, 0.2);
-            border: 2px solid #ffe3e8;
-            position: relative;
-        }
-
-        .day-tag {
-            background: var(--accent-lavender);
-            color: #7d5fa7;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-            display: inline-block;
-            margin-bottom: 15px;
-        }
-
-        .item-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .item-list li {
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            background: #fff9fa;
-            border-radius: 12px;
-            border-left: 5px solid var(--primary-pink);
-            font-size: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .coords {
-            font-size: 11px;
-            color: #a39296;
-            background: #f0ecef;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-family: monospace;
-        }
-
-        .dd-tag {
-            background: #ffe3a8;
-            color: #b36b00;
-            font-size: 11px;
-            padding: 2px 6px;
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .flight-info {
-            background: #f3f9ff;
-            border-left: 5px solid #a8d3ff;
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 10px;
-            font-size: 14px;
-        }
-    </style>
+  /* ---------- MODAL ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(40,20,45,0.55);
+    display:none; align-items:center; justify-content:center; z-index:100; padding:18px;
+  }
+  .overlay.open{display:flex;}
+  .card{
+    background:var(--paper);
+    max-width:380px; width:100%;
+    border-radius:14px;
+    padding:20px;
+    max-height:88vh; overflow-y:auto;
+    box-shadow:0 20px 40px rgba(0,0,0,0.4);
+    position:relative;
+  }
+  .card .close{
+    position:absolute; top:10px; right:12px;
+    background:none; border:none; font-size:20px; cursor:pointer; color:var(--grape);
+  }
+  .card h3{margin:6px 0 2px; color:var(--grape-deep); font-size:20px;}
+  .card .emoji-big{font-size:42px; text-align:center;}
+  .card .card-thumb{width:100%; height:150px; border-radius:10px; background:var(--mint); overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:50px; margin:8px 0;}
+  .card .card-thumb img{width:100%; height:100%; object-fit:cover;}
+  .card .field{margin-top:12px;}
+  .card label{font-size:11px; font-weight:800; color:#9a7c8c; text-transform:uppercase; letter-spacing:.4px;}
+  .card input, .card textarea{
+    width:100%; margin-top:4px; padding:8px 10px; border-radius:8px;
+    border:2px solid #f0dfe8; font-family:'Nunito',sans-serif; font-size:13px; resize:vertical;
+  }
+  .card .btn{
+    display:inline-block; margin-top:14px; padding:9px 16px; border-radius:20px;
+    border:none; font-family:'Baloo 2',cursive; font-size:13px; cursor:pointer;
+    text-decoration:none; text-align:center;
+  }
+  .btn.maps{background:var(--mint); color:var(--grape-deep); box-shadow:0 3px 0 #8fd9bd;}
+  .btn.save{background:var(--string); color:#fff; box-shadow:0 3px 0 var(--string-dark);}
+  .btn.save:active, .btn.maps:active{transform:translateY(2px); box-shadow:none;}
+  .conf-strip{
+    background:var(--grape-deep); color:var(--cream); padding:8px 10px; border-radius:8px;
+    font-size:12px; margin-top:8px; display:flex; justify-content:space-between;
+  }
+  .flag{
+    background:#fff4d6; border:2px dashed #e8b93a; color:#7a5b00; border-radius:10px;
+    padding:10px 14px; font-size:12.5px; margin-top:10px; font-weight:700;
+  }
+  .savebar{
+    position:fixed; bottom:14px; left:50%; transform:translateX(-50%);
+    background:var(--grape-deep); color:var(--cream); padding:8px 18px; border-radius:20px;
+    font-size:12px; opacity:0; transition:opacity .3s; z-index:200; pointer-events:none;
+    box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  }
+  .savebar.show{opacity:1;}
+  footer{text-align:center; color:var(--cream); opacity:.75; font-size:12px; padding-bottom:30px;}
+</style>
 </head>
 <body>
 
-    <header>
-        <h1>🌸 Our Kawaii Lodi Vacation Planner 🌸</h1>
-        <p>August 16 - August 20, 2026 • Travel Notebook & Itinerary ✨</p>
-    </header>
+<div class="hero">
+  <span class="vine" style="left:6%; top:15%;">🍇</span>
+  <span class="vine" style="right:8%; top:25%;">🍇</span>
+  <span class="vine" style="left:14%; bottom:8%;">🍇</span>
+  <span class="vine" style="right:16%; bottom:12%;">🍇</span>
+  <h1>Our Lodi Adventure 🍇✈️</h1>
+  <div class="sub">a very cute plan for a very cute trip</div>
+  <div class="dates">Aug 16 – Aug 20 · Fairford ➜ SF ➜ Lodi ➜ home</div>
+</div>
 
-    <div class="corkboard-container">
-        <h3 class="board-title">📍 Adventure Thread Board (Click to jump to Day!)</h3>
-        <div class="map-preview">
-            
-            <svg class="string-overlay">
-                <line x1="80" y1="80" x2="220" y2="120" stroke="#ff4d6d" stroke-width="3" stroke-dasharray="2,2"/>
-                <line x1="220" y1="120" x2="480" y2="160" stroke="#ff4d6d" stroke-width="3"/>
-                <line x1="480" y1="160" x2="520" y2="280" stroke="#ff4d6d" stroke-width="3"/>
-                <line x1="520" y1="280" x2="820" y2="200" stroke="#ff4d6d" stroke-width="3" stroke-dasharray="2,2"/>
-            </svg>
+<div class="daynav" id="daynav"></div>
 
-            <div class="pin-node" style="top: 50px; left: 40px; transform: rotate(-5deg);" onclick="scrollToSection('day0')">
-                ✈️<br>SFO Arrive
-            </div>
-            <div class="pin-node" style="top: 90px; left: 180px; transform: rotate(7deg);" onclick="scrollToSection('day0')">
-                🍫<br>SF Fun
-            </div>
-            <div class="pin-node" style="top: 130px; left: 440px; transform: rotate(-8deg);" onclick="scrollToSection('day1')">
-                🏡<br>Lodi Day 1
-            </div>
-            <div class="pin-node" style="top: 250px; left: 480px; transform: rotate(4deg);" onclick="scrollToSection('day2')">
-                🛍️<br>Lodi Day 2
-            </div>
-            <div class="pin-node" style="top: 170px; left: 780px; transform: rotate(-3deg);" onclick="scrollToSection('day3')">
-                🛫<br>Heading Home
-            </div>
-        </div>
+<div class="timeline">
+  <div class="spine"></div>
+  <div id="days"></div>
+</div>
+
+<footer>made with 🍇 &amp; red string · tap any pin to add photos, links &amp; notes — changes are shared with your husband too 💌</footer>
+
+<div class="overlay" id="overlay">
+  <div class="card" id="card"></div>
+</div>
+<div class="savebar" id="savebar">saved! 🎀</div>
+
+<script>
+const MAPS = a => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a)}`;
+
+const TRIP = [
+  {
+    id:'d0', day:'Sun · Aug 16', title:'Fairford ➜ hit the road', icon:'🚗',
+    pins:[
+      {id:'p-leave', icon:'🚗', kind:'note', name:'Leave Fairford with Dad', time:'afternoon', note:'Pack snacks for the drive 🍇'},
+      {id:'p-motel', icon:'🛏️', kind:'note', name:'Motel sleepover', time:'evening', note:'Early night — early alarm for the flight!'}
+    ]
+  },
+  {
+    id:'d1', day:'Mon · Aug 17 · morning', title:'Wheels up to San Francisco', icon:'✈️',
+    pins:[
+      {id:'f-ywgyyc', icon:'✈️', kind:'flight', name:'Winnipeg ➜ Calgary', route:'YWG → YYC', time:'7:00a – 8:15a', flight:'WestJet WS223', conf:'QNEAEB'},
+      {id:'f-yycsfo', icon:'✈️', kind:'flight', name:'Calgary ➜ San Francisco', route:'YYC → SFO', time:'10:00a – 12:00p', flight:'WestJet WS1500', conf:'QNEAEB'}
+    ]
+  },
+  {
+    id:'d1b', day:'Mon · Aug 17 · afternoon', title:'A little San Francisco day', icon:'🌉',
+    pins:[
+      {id:'s-uber1', icon:'🚕', kind:'note', name:'Uber from SFO', note:'Straight to the pier!'},
+      {id:'s-pier39', icon:'🎡', kind:'place', name:'Pier 39', address:'The Embarcadero, San Francisco, CA 94133', note:'Sea lions + sourdough + salty air'},
+      {id:'s-scoot', icon:'🛴', kind:'note', name:'Walk or scooter over', note:'Along the water to Ghirardelli Square'},
+      {id:'s-ghirardelli', icon:'🍫', kind:'place', name:'Ghirardelli Chocolate Experience', address:'900 North Point St F301, San Francisco, CA 94109', note:'Sundae time 🍨'},
+      {id:'s-uber2', icon:'🚕', kind:'note', name:'Uber to Lodi', note:'300 South Sunset Ave, Lodi CA — home base for the week 🏡'}
+    ]
+  },
+  {
+    id:'d2', day:'Tue · Aug 18', title:'Lodi Day One — Downtown & Sweets', icon:'🏛️',
+    pins:[
+      {id:'l-doordash-dunkin', icon:'☕', kind:'note', name:'DoorDash: Dunkin', note:'Coffee delivered to the house before heading out'},
+      {id:'l-downtown', icon:'🏘️', kind:'place', name:'Downtown Lodi', address:'25 N School St, Lodi, CA 95240', note:'Wander the shops & wine tasting rooms'},
+      {id:'l-arch', icon:'🌟', kind:'place', name:'Lodi Arch', address:'1-49 E Pine St, Lodi, CA 95240', note:'The iconic photo spot!'},
+      {id:'l-masjid', icon:'🕌', kind:'place', name:'Masjid', address:'210 Poplar St, Lodi, CA 95240', note:'Lodi Mosque'},
+      {id:'l-aw', icon:'🍔', kind:'place', name:'A & W', address:'216 E Lodi Ave, Lodi, CA 95240', note:'The original A&W — root beer float required'},
+      {id:'l-savemart', icon:'🛒', kind:'place', name:'Save Mart', address:'530 W Lodi Ave, Lodi, CA 95240', note:'Grocery run'},
+      {id:'l-haircut', icon:'💇', kind:'place', name:'Haircut', address:'400 E Kettleman Ln Unit C-9, Lodi, CA 95240', note:'Speakeasy Barbershop'},
+      {id:'l-toms', icon:'📚', kind:'place', name:"Tom's Bookstore", address:'108 N School St, Lodi, CA 95240', note:'Say hi to the shop cat 🐈'},
+      {id:'l-clocks', icon:'🕰️', kind:'place', name:'House of Clocks', address:'208 S School St, Lodi, CA 95240', note:'Adorable little gift shop'},
+      {id:'l-choc', icon:'🍫', kind:'place', name:'Lodi Chocolate Factory', address:'115 S School St #4, Lodi, CA 95240', note:'Chocolate-dipped apples!'},
+      {id:'l-cigar', icon:'🚬', kind:'place', name:'Cigar Lounge', address:'40 Downtown Mall, 7 S School St, Lodi, CA 95240', note:"Lefty's Lounge — cozy end to the night"}
+    ]
+  },
+  {
+    id:'d3', day:'Wed · Aug 19', title:'Lodi Day Two — Kettleman Ln & Chill', icon:'🍟',
+    pins:[
+      {id:'l-doordash-boba', icon:'🧋', kind:'note', name:'DoorDash: Boba', note:'Slow morning at the house'},
+      {id:'l-fosters', icon:'🍦', kind:'place', name:"Fosters Freeze", address:'315 N Ham Ln, Lodi, CA 95242', note:'Old-school drive-in soft serve'},
+      {id:'l-gamers', icon:'🎮', kind:'place', name:'Lodi Gamers', address:'754 W Kettleman Ln, Lodi, CA 95240', note:'Browse for retro finds'},
+      {id:'l-innout', icon:'🍟', kind:'place', name:'In & Out', address:'2625 W Kettleman Ln, Lodi, CA 95242', note:'Animal style, obviously'},
+      {id:'l-doordash-chipotle', icon:'🌯', kind:'note', name:'DoorDash: Chipotle', note:'Or save this one for dinner in'},
+      {id:'l-yogurt', icon:'🍨', kind:'place', name:'Oh My Yogurt', address:'2314 W Kettleman Ln #102, Lodi, CA 95242', note:'Topping bar, obviously'}
+    ]
+  },
+  {
+    id:'bonus', day:'whenever you have a spare hour', title:'Bonus pin', icon:'🪷',
+    pins:[
+      {id:'l-lake', icon:'🪷', kind:'place', name:'Lodi Lake', address:'1101 W Turner Rd, Lodi, CA 95242', note:'You mentioned this one! Lovely for a stroll if a gap opens up.'},
+      {id:'l-farmers', icon:'🥕', kind:'flag', name:'Farmers Market — heads up!', address:'25 N School St, Lodi, CA 95240', note:"Downtown Lodi's Farmers Market only runs Thursday evenings in summer. Your Lodi days are Tue/Wed, and Thu Aug 20 is travel day — so this one may not fit. Keep as a maybe, or swap a flight if it's a must!"}
+    ]
+  },
+  {
+    id:'d4', day:'Thu · Aug 20', title:'Flying home', icon:'🏡',
+    pins:[
+      {id:'f-sfoyyc', icon:'✈️', kind:'flight', name:'San Francisco ➜ Calgary', route:'SFO → YYC', time:'1:00p – 4:40p', flight:'WestJet WS1503', conf:'QNEAEB'},
+      {id:'f-yycywg', icon:'✈️', kind:'flight', name:'Calgary ➜ Winnipeg', route:'YYC → YWG', time:'7:10p – 10:10p', flight:'WestJet WS240', conf:'QNEAEB'},
+      {id:'p-fairford2', icon:'🚗', kind:'note', name:'Drive back to Fairford', note:'Home sweet home 💜'}
+    ]
+  }
+];
+
+let STORE = { overrides:{}, custom:{} };
+const daysEl = document.getElementById('days');
+const navEl = document.getElementById('daynav');
+const overlay = document.getElementById('overlay');
+const cardEl = document.getElementById('card');
+const savebar = document.getElementById('savebar');
+
+function pinData(p){
+  const o = STORE.overrides[p.id] || {};
+  return {...p, ...o};
+}
+
+function renderNav(){
+  navEl.innerHTML = TRIP.map(d=>`<button onclick="document.getElementById('${d.id}').scrollIntoView({behavior:'smooth',block:'start'})">${d.icon} ${d.day.split('·')[0].trim()}</button>`).join('');
+}
+
+function pinCardHTML(p){
+  const d = pinData(p);
+  const thumb = d.image ? `<img src="${d.image}" alt="">` : (d.icon || '📍');
+  const timeLine = d.time ? `<span class="time">${d.time}</span>` : (d.flight ? `<span class="time">${d.flight}</span>` : '');
+  const cls = d.kind === 'flight' ? 'flight' : (d.kind==='note' ? 'note' : '');
+  return `<div class="pin ${cls}" data-id="${p.id}" onclick="openCard('${p.id}')">
+    <div class="grape-pin">🍇</div>
+    ${d.kind==='flag' ? '<div class="badge">⚠️</div>' : ''}
+    <div class="thumb">${thumb}</div>
+    <div class="name">${d.name}</div>
+    ${timeLine}
+  </div>`;
+}
+
+function renderDays(){
+  daysEl.innerHTML = TRIP.map(day => {
+    const pins = day.pins.map(pinCardHTML).join('');
+    const customPins = (STORE.custom[day.id]||[]).map(p=>pinCardHTML({...p})).join('');
+    return `<div class="day-section" id="${day.id}">
+      <div class="day-marker">${day.icon}</div>
+      <div class="day-label">${day.day}</div>
+      <h2 class="day-title">${day.title}</h2>
+      <div class="board">
+        <svg class="strings"></svg>
+        <div class="pins">${pins}${customPins}</div>
+      </div>
+      <button class="add-pin" onclick="addCustomPin('${day.id}')">＋ add your own stop</button>
+    </div>`;
+  }).join('');
+  requestAnimationFrame(drawAllStrings);
+}
+
+function drawAllStrings(){
+  document.querySelectorAll('.board').forEach(board=>{
+    const svg = board.querySelector('svg.strings');
+    const pins = [...board.querySelectorAll('.pin')];
+    const boardRect = board.getBoundingClientRect();
+    let paths = '';
+    for(let i=0;i<pins.length-1;i++){
+      const a = pins[i].getBoundingClientRect();
+      const b = pins[i+1].getBoundingClientRect();
+      const x1 = a.left + a.width/2 - boardRect.left, y1 = a.top + a.height/2 - boardRect.top;
+      const x2 = b.left + b.width/2 - boardRect.left, y2 = b.top + b.height/2 - boardRect.top;
+      const midx = (x1+x2)/2, midy = (y1+y2)/2 - 26;
+      paths += `<path d="M ${x1} ${y1} Q ${midx} ${midy} ${x2} ${y2}" stroke="#e0364c" stroke-width="2.5" fill="none" opacity="0.85"/>`;
+    }
+    svg.innerHTML = paths;
+  });
+}
+window.addEventListener('resize', ()=>requestAnimationFrame(drawAllStrings));
+
+function findPin(id){
+  for(const day of TRIP){
+    const f = day.pins.find(p=>p.id===id);
+    if(f) return f;
+  }
+  for(const key in STORE.custom){
+    const f = (STORE.custom[key]||[]).find(p=>p.id===id);
+    if(f) return f;
+  }
+  return null;
+}
+
+function openCard(id){
+  const base = findPin(id);
+  if(!base) return;
+  const d = pinData(base);
+  overlay.classList.add('open');
+  const mapsBtn = d.address ? `<a class="btn maps" target="_blank" href="${MAPS(d.address)}">📍 open in maps</a>` : '';
+  const confStrip = d.kind==='flight' ? `<div class="conf-strip"><span>${d.flight}</span><span class="mono">${d.conf}</span></div>` : '';
+  const flagBox = d.kind==='flag' ? `<div class="flag">${d.note}</div>` : '';
+  cardEl.innerHTML = `
+    <button class="close" onclick="closeCard()">✕</button>
+    <div class="emoji-big">${d.icon||'📍'}</div>
+    <h3 style="text-align:center">${d.name}</h3>
+    ${d.route ? `<div style="text-align:center;font-weight:700;color:#9a7c8c">${d.route} · ${d.time||''}</div>`:''}
+    ${confStrip}
+    ${flagBox}
+    <div class="card-thumb" id="cardThumb">${d.image?`<img src="${d.image}">`:(d.icon||'📍')}</div>
+    ${d.address ? `<div style="text-align:center;font-size:13px;color:#8a6a7a">${d.address}</div>`:''}
+    ${mapsBtn ? `<div style="text-align:center;margin-top:8px;">${mapsBtn}</div>`:''}
+    <div class="field">
+      <label>photo url</label>
+      <input id="f-image" value="${d.image||''}" placeholder="paste a photo link">
     </div>
-
-    <div class="timeline">
-
-        <div class="day-card full-width" id="day0">
-            <span class="day-tag">Aug 16 - 17: Journey to California</span>
-            <h3>🚗 Travel & SF Day Trip</h3>
-            <p><strong>Aug 16:</strong> Head out with Dad from Fairford, sleep cozy at the airport motel overnight.</p>
-            
-            <div class="flight-info">
-                <strong>🛫 Flight WS221:</strong> Winnipeg (YWG) 06:00 → Calgary (YYC) 07:15 <br>
-                <em>(2 hr 45 min layover to get snacks!)</em><br>
-                <strong>🛬 Flight WS1500:</strong> Calgary (YYC) 10:00 → San Francisco (SFO) 12:00
-            </div>
-
-            <p style="margin-top: 15px;"><strong>🏙️ Afternoon in San Francisco Schedule:</strong></p>
-            <ul class="item-list">
-                <li><span>🚖 Uber from SFO Airport to Pier 39</span><span class="coords">37.8087° N, 122.4098° W</span></li>
-                <li><span>🛴 Walk / Scooter ride down to Ghirardelli Chocolate Experience</span><span class="coords">37.8058° N, 122.4225° W</span></li>
-                <li><span>🚗 Long Uber to Rental House (300 S Sunset Dr, Lodi, CA)</span><span class="coords">38.1215° N, 121.2981° W</span></li>
-            </ul>
-        </div>
-
-        <div class="day-card" id="day1">
-            <span class="day-tag">Aug 18: Lodi Landmarks & Pampering</span>
-            <h3>🌳 Local Sightseeing Day</h3>
-            <p>Hitting up iconic local spots and getting a fresh style adjustment.</p>
-            <ul class="item-list">
-                <li><span>🏛️ Historic Lodi Arch</span><span class="coords">38.1340° N, 121.2725° W</span></li>
-                <li><span>✂️ Haircut Session</span><span class="coords">Local Salon</span></li>
-                <li><span>🕌 Lodi Masjid</span><span class="coords">38.1292° N, 121.2612° W</span></li>
-                <li><span>📚 Tom’s BookStore</span><span class="coords">38.1336° N, 121.2730° W</span></li>
-                <li><span>🕰️ House of Clocks</span><span class="coords">38.1331° N, 121.2715° W</span></li>
-                <li><span>🍟 Fosters Freeze (Lunch Treat!)</span><span class="coords">38.1278° N, 121.2721° W</span></li>
-                <li><span>🍦 Oh My Yogurt (Evening Dessert)</span><span class="coords">38.1351° N, 121.2912° W</span></li>
-                <li><span>🧋 DoorDash Boba Delivery</span><span class="dd-tag">DoorDash</span></li>
-                <li><span>🌯 DoorDash Chipotle Dinner</span><span class="dd-tag">DoorDash</span></li>
-            </ul>
-        </div>
-
-        <div class="day-card" id="day2">
-            <span class="day-tag">Aug 19: Streets & Treats</span>
-            <h3>🛍️ Downtown Culture & Shopping</h3>
-            <p>Exploring local community hubs and gathering sweet treats.</p>
-            <ul class="item-list">
-                <li><span>🏙️ Walk Around Downtown Lodi</span><span class="coords">38.1338° N, 121.2726° W</span></li>
-                <li><span>🍔 A&W Root Beer (Original Home!)</span><span class="coords">38.1381° N, 121.2690° W</span></li>
-                <li><span>🍫 Lodi Chocolate Factory</span><span class="coords">38.1343° N, 121.2733° W</span></li>
-                <li><span>🕹️ Lodi Gamers</span><span class="coords">38.1335° N, 121.2741° W</span></li>
-                <li><span>🛒 Save Mart Grocery Haul</span><span class="coords">38.1189° N, 121.2905° W</span></li>
-                <li><span>🍩 DoorDash Dunkin’ Breakfast</span><span class="dd-tag">DoorDash</span></li>
-                <li><span>🍔 In-N-Out Burger Run</span><span class="coords">38.1245° N, 121.2480° W</span></li>
-            </ul>
-        </div>
-
-        <div class="day-card full-width" id="day3">
-            <span class="day-tag">Aug 20 - 21: Flight Back Home</span>
-            <h3>🛄 Homeward Journey</h3>
-            <p>Wake up early at the rental house, pack up the memories, and head back to SFO airport.</p>
-            
-            <div class="flight-info" style="background: #fff6f8; border-left-color: #ffb3c1;">
-                <strong>🛫 Flight WS1507:</strong> San Francisco (SFO) 18:05 → Calgary (YYC) 21:45 <br>
-                <em>(10 hr 25 min overnight layover in Calgary)</em><br>
-                <strong>🛬 Flight WS222:</strong> Calgary (YYC) 08:10 → Winnipeg (YWG) 11:10 (Aug 21)
-            </div>
-        </div>
-
+    <div class="field">
+      <label>your note</label>
+      <textarea id="f-note" rows="3" placeholder="add a note...">${(d.note && d.kind!=='flag') ? d.note : (d.kind==='flag' ? '' : (d.note||''))}</textarea>
     </div>
+    <div class="field">
+      <label>link (menu, website, booking...)</label>
+      <input id="f-link" value="${d.link||''}" placeholder="https://...">
+    </div>
+    <div style="text-align:center;">
+      <button class="btn save" onclick="savePin('${id}')">save 🎀</button>
+    </div>
+  `;
+}
+function closeCard(){ overlay.classList.remove('open'); }
+overlay.addEventListener('click', e=>{ if(e.target===overlay) closeCard(); });
 
-    <script>
-        function scrollToSection(id) {
-            const element = document.getElementById(id);
-            if (element) {
-                element.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    </script>
+function savePin(id){
+  const image = document.getElementById('f-image').value.trim();
+  const note = document.getElementById('f-note').value.trim();
+  const link = document.getElementById('f-link').value.trim();
+  STORE.overrides[id] = {...(STORE.overrides[id]||{}), image, note, link};
+  persist();
+  renderDays();
+  closeCard();
+  flashSaved();
+}
+
+function addCustomPin(dayId){
+  const name = prompt('name of the place?');
+  if(!name) return;
+  const address = prompt('address? (optional, for maps link)') || '';
+  const emoji = prompt('pick an emoji for it! (optional)') || '📍';
+  const id = 'custom-'+Date.now();
+  STORE.custom[dayId] = STORE.custom[dayId] || [];
+  STORE.custom[dayId].push({id, icon:emoji, kind:'place', name, address, note:''});
+  persist();
+  renderDays();
+  flashSaved();
+}
+
+function flashSaved(){
+  savebar.classList.add('show');
+  setTimeout(()=>savebar.classList.remove('show'), 1400);
+}
+
+async function persist(){
+  try{
+    await window.storage.set('lodi-trip-data', JSON.stringify(STORE), true);
+  }catch(e){ console.error('save failed', e); }
+}
+async function loadStore(){
+  try{
+    const res = await window.storage.get('lodi-trip-data', true);
+    if(res && res.value) STORE = JSON.parse(res.value);
+  }catch(e){ /* nothing saved yet */ }
+}
+
+(async function init(){
+  renderNav();
+  await loadStore();
+  renderDays();
+  setTimeout(drawAllStrings, 300);
+})();
+</script>
 </body>
 </html>
